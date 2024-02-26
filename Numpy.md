@@ -313,6 +313,258 @@ arr2.dtype
 ```
 dtype('float64')
 ​
+## NumPy Indexing and Selection
+```python
+import numpy as np
+#Creating sample array
+arr = np.arange(0,11)
+#Show
+arr
+```
+array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+### Bracket Indexing and Selection
+The simplest way to pick one or some elements of an array looks very similar to python lists:
+```python
+#Get a value at an index
+arr[8]
+```
+8
+```python
+#Get values in a range
+arr[1:5]
+```
+array([1, 2, 3, 4])
+```python
+#Get values in a range
+arr[0:5]
+```
+array([0, 1, 2, 3, 4])
+### Broadcasting
+NumPy arrays differ from normal Python lists because of their ability to broadcast. With lists, you can only reassign parts of a list with new parts of the same size and shape. That is, if you wanted to replace the first 5 elements in a list with a new value, you would have to pass in a new 5 element list. With NumPy arrays, you can broadcast a single value across a larger set of values:
+```python
+#Setting a value with index range (Broadcasting)
+arr[0:5]=100​
+#Show
+arr
+```
+array([100, 100, 100, 100, 100,   5,   6,   7,   8,   9,  10])
+```python
+#Reset array, we'll see why I had to reset in  a moment
+arr = np.arange(0,11)
+​#Show
+arr
+```
+array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+```python
+#Important notes on Slices
+slice_of_arr = arr[0:6]
+​#Show slice
+slice_of_arr
+```
+array([0, 1, 2, 3, 4, 5])
+```python
+#Change Slice
+slice_of_arr[:]=99
+​#Show Slice again
+slice_of_arr
+```
+array([99, 99, 99, 99, 99, 99])
+Now note the changes also occur in our original array!
+```python
+arr
+```
+array([99, 99, 99, 99, 99, 99,  6,  7,  8,  9, 10])
+
+Data is not copied, it's a view of the original array! This avoids memory problems!
+#To get a copy, need to be explicit
+```python
+arr_copy = arr.copy()
+arr_copy
+```
+array([99, 99, 99, 99, 99, 99,  6,  7,  8,  9, 10])
+
+### Indexing a 2D array (matrices)
+The general format is arr_2d[row][col] or arr_2d[row,col]. I recommend using the comma notation for clarity.
+``` python
+arr_2d = np.array(([5,10,15],[20,25,30],[35,40,45]))
+​#Show
+arr_2d
+```
+array([[ 5, 10, 15],
+       [20, 25, 30],
+       [35, 40, 45]])
+``` python
+#Indexing row
+arr_2d[1]
+```
+array([20, 25, 30])
+``` python
+#Format is arr_2d[row][col] or arr_2d[row,col]
+​#Getting individual element value
+arr_2d[1][0]
+```
+20
+``` python
+#Getting individual element value
+arr_2d[1,0]
+```
+20
+``` python
+#2D array slicing
+​#Shape (2,2) from top right corner
+arr_2d[:2,+]
+```
+array([[10, 15],
+       [25, 30]])
+``` python
+#Shape bottom row
+arr_2d[2]
+```
+array([35, 40, 45])
+``` python
+#Shape bottom row
+arr_2d[2,:]
+```
+array([35, 40, 45])
+
+### More Indexing Help
+Indexing a 2D matrix can be a bit confusing at first, especially when you start to add in step size. Try google image searching NumPy indexing to find useful images, like this one:
+
+Image Image source: http://www.scipy-lectures.org/intro/numpy/numpy.html
+
+### Conditional Selection
+This is a very fundamental concept that will directly translate to pandas later on, make sure you understand this part!
+
+Let's briefly go over how to use brackets for selection based off of comparison operators.
+``` python
+arr = np.arange(1,11)
+arr
+```
+array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+``` python
+arr > 4
+```
+array([False, False, False, False,  True,  True,  True,  True,  True,
+        True])
+``` python
+bool_arr = arr>4
+bool_arr
+```
+array([False, False, False, False,  True,  True,  True,  True,  True,
+        True])
+``` python
+arr[bool_arr]
+```
+array([ 5,  6,  7,  8,  9, 10])
+``` python
+arr[arr>2]
+```
+array([ 3,  4,  5,  6,  7,  8,  9, 10])
+``` python
+x = 2
+arr[arr>x]
+```
+array([ 3,  4,  5,  6,  7,  8,  9, 10])
+
+## NumPy Operations
+### Arithmetic
+You can easily perform array with array arithmetic, or scalar with array arithmetic. Let's see some examples:
+
+import numpy as np
+arr = np.arange(0,10)
+arr
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+arr + arr
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
+arr * arr
+array([ 0,  1,  4,  9, 16, 25, 36, 49, 64, 81])
+arr - arr
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+# This will raise a Warning on division by zero, but not an error!
+# It just fills the spot with nan
+arr/arr
+C:\Anaconda3\envs\tsa_course\lib\site-packages\ipykernel_launcher.py:3: RuntimeWarning: invalid value encountered in true_divide
+  This is separate from the ipykernel package so we can avoid doing imports until
+array([nan,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
+# Also a warning (but not an error) relating to infinity
+1/arr
+C:\Anaconda3\envs\tsa_course\lib\site-packages\ipykernel_launcher.py:2: RuntimeWarning: divide by zero encountered in true_divide
+  
+array([       inf, 1.        , 0.5       , 0.33333333, 0.25      ,
+       0.2       , 0.16666667, 0.14285714, 0.125     , 0.11111111])
+arr**3
+array([  0,   1,   8,  27,  64, 125, 216, 343, 512, 729], dtype=int32)
+Universal Array Functions
+NumPy comes with many universal array functions, or ufuncs, which are essentially just mathematical operations that can be applied across the array.
+Let's show some common ones:
+
+# Taking Square Roots
+np.sqrt(arr)
+array([0.        , 1.        , 1.41421356, 1.73205081, 2.        ,
+       2.23606798, 2.44948974, 2.64575131, 2.82842712, 3.        ])
+# Calculating exponential (e^)
+np.exp(arr)
+array([1.00000000e+00, 2.71828183e+00, 7.38905610e+00, 2.00855369e+01,
+       5.45981500e+01, 1.48413159e+02, 4.03428793e+02, 1.09663316e+03,
+       2.98095799e+03, 8.10308393e+03])
+# Trigonometric Functions like sine
+np.sin(arr)
+array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ,
+       -0.95892427, -0.2794155 ,  0.6569866 ,  0.98935825,  0.41211849])
+# Taking the Natural Logarithm
+np.log(arr)
+C:\Anaconda3\envs\tsa_course\lib\site-packages\ipykernel_launcher.py:2: RuntimeWarning: divide by zero encountered in log
+  
+array([      -inf, 0.        , 0.69314718, 1.09861229, 1.38629436,
+       1.60943791, 1.79175947, 1.94591015, 2.07944154, 2.19722458])
+Summary Statistics on Arrays
+NumPy also offers common summary statistics like sum, mean and max. You would call these as methods on an array.
+
+arr = np.arange(0,10)
+arr
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+arr.sum()
+45
+arr.mean()
+4.5
+arr.max()
+9
+Other summary statistics include:
+
+arr.min() returns 0                   minimum
+arr.var() returns 8.25                variance
+arr.std() returns 2.8722813232690143  standard deviation
+Axis Logic
+When working with 2-dimensional arrays (matrices) we have to consider rows and columns. This becomes very important when we get to the section on pandas. In array terms, axis 0 (zero) is the vertical axis (rows), and axis 1 is the horizonal axis (columns). These values (0,1) correspond to the order in which arr.shape values are returned.
+
+Let's see how this affects our summary statistic calculations from above.
+
+arr_2d = np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+arr_2d
+array([[ 1,  2,  3,  4],
+       [ 5,  6,  7,  8],
+       [ 9, 10, 11, 12]])
+arr_2d.sum(axis=0)
+array([15, 18, 21, 24])
+By passing in axis=0, we're returning an array of sums along the vertical axis, essentially [(1+5+9), (2+6+10), (3+7+11), (4+8+12)]
+
+Image
+arr_2d.shape
+(3, 4)
+This tells us that arr_2d has 3 rows and 4 columns.
+
+In arr_2d.sum(axis=0) above, the first element in each row was summed, then the second element, and so forth.
+
+So what should arr_2d.sum(axis=1) return?
+
+# THINK ABOUT WHAT THIS WILL RETURN BEFORE RUNNING THE CELL!
+arr_2d.sum(axis=1)
+Great Job!
+That's all we need to know for now!
+
+
+
+
 ## Conclusion
 
 NumPy's efficient array operations, mathematical functions, and integration capabilities make it a fundamental tool for numerical computing in Python. Its versatility, performance, and ease of use make it an indispensable component of the Python scientific computing ecosystem. Whether you're performing basic numerical computations or tackling complex machine learning tasks, NumPy provides the tools you need to efficiently manipulate and analyze numerical data.
