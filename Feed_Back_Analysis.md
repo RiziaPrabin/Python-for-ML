@@ -186,7 +186,7 @@ ax.set_title(label = "Resourse Person", fontsize = 20,color='Brown',pad=20);
 ### Set title for the pie chart
 ``ax.set_title(label="Resourse Person", fontsize=20, color='Brown', pad=20)``
 This code utilizes Matplotlib and Seaborn to generate a side-by-side visualization of the distribution of a categorical variable ("Resourse Person") in the DataFrame df_class. The first subplot displays a count plot (bar chart), while the second subplot presents a pie chart. Both charts provide insights into the frequency and proportion of different categories in the "Resourse Person" column.
-Output:![pie chart]![pie chart](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/bfef2bfc-28f3-49e8-9542-d974e14e2e91)
+Output:![pie chart]![image](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3e26f7ff-2f60-4682-b9f6-547ad0ce2498)
 
 ### Step-5:Creating a summary of responses
  A box and whisker plot or diagram (otherwise known as a boxplot), is a graph summarising a set of data. The shape of the boxplot shows how the data is distributed and it also shows any outliers. It is a useful way to compare different sets of data as you can draw more than one boxplot per graph.
@@ -196,7 +196,7 @@ Output:![pie chart]![pie chart](https://github.com/RiziaPrabin/Python-for-ML/ass
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp,cq]![rp,cq](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/fb00507c-ae98-4f72-94af-b7b3013ce5bc)
+Output:![image (1)](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/2bcce0f4-b68b-40eb-8f1d-b9608dd7cef8)
 
 
 2)creating boxplot on Effectiveness v/s Resource person
@@ -204,22 +204,24 @@ Output:![rp,cq]![rp,cq](https://github.com/RiziaPrabin/Python-for-ML/assets/1604
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Outpu![rp ef]![rp ef](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d34ddbb5-757b-4a06-a0ba-0e24bc4352f7)
+Output![image (2)](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d1341e35-0611-476d-9e3e-3bdd0d5a6adf)
 
-t:
+
 3)creating boxplot on Relevance v/s Resource person
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp , re]![rp , re](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/25d730b1-b3cd-4fb6-b946-fb7d046fa88a)
+Output:![image (3)](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/a261194d-8b5b-4ea5-ae26-bc75c75e779c)
+
 
 4)creating boxplot on Overall Organization v/s Resource person
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp,oo]![rp,oo](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/8974d95c-569a-4a9d-b755-c8834af7da22)
+Output:![image (4)](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/8c11ccf6-7089-4a56-a913-e9aa9cddcd9f)
+
 
 5)creating boxplot on Branch  v/s Content quality
 
@@ -227,7 +229,7 @@ Output:![rp,oo]![rp,oo](https://github.com/RiziaPrabin/Python-for-ML/assets/1604
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![branch cq]![branch cq](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/80379db8-5b43-4c5e-b14b-91d738cbf49c)
+Output:![image (5)](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d4688f68-ad5e-432c-b95c-63f3b64a1002)
 
 
 ## Step-6:Unsupervised machine learning
@@ -285,7 +287,8 @@ plt.ylabel('Within-Cluster Sum of Squares (WCSS)')
 plt.title('Elbow Method')
 plt.show()
 ```
-Output:![Elbow method]![Elbow method](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/abd8144c-8bc4-4217-8dcc-bba63e1ce2be)
+Output:![Elbow method](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/972a6ae6-ff6c-4953-a923-e95a868fa738)
+
 
 
 
