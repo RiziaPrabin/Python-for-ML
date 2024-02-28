@@ -179,7 +179,8 @@ plt.ylabel('Predicted House Prices')
 plt.title('Actual vs. Predicted House Prices')
 plt.show()
 ```
-Output:![a1](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/14617078-d92c-4bbf-9eb0-f86260a25b75)
+Output:![a1](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/e5f7fac4-5126-4b20-86de-787484462c55)
+
 
 ```python
 # R2
@@ -243,8 +244,7 @@ plt.ylabel('Predicted House Prices')
 plt.tight_layout()
 plt.show()
 ```
-Output:![a2](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/f744d737-6326-4315-bece-c701f09b17e7)
-![a2](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/f6bcf23f-483c-4da3-b8ba-94efb989d040)
+Output:![a2](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/13021924-bd5d-462c-8295-dc117d28150c)
 
 ### Example problem:
 ***problem statement**
