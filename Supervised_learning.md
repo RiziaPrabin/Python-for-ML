@@ -245,6 +245,8 @@ plt.tight_layout()
 plt.show()
 ```
 Output:![a2](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/13021924-bd5d-462c-8295-dc117d28150c)
+![a3](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/94cc8d00-58b5-4ec9-b49f-4da2bd942acd)
+
 
 ### Example problem:
 ***problem statement**
