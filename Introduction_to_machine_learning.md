@@ -1190,6 +1190,7 @@ plt.show()
 
 ### Manual spacing on subplots()
 Use .subplots_adjust to adjust spacing manually.
+Full Details Here: https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.pyplot.subplots_adjust.html
 Example 
 
 left = 0.125 # the left side of the subplots of the figure
@@ -1237,6 +1238,173 @@ fig.savefig('subplots.png',bbox_inches='tight')
 plt.show()
 ```
 ![22](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1f0786fe-3794-4a32-833b-bf7624fe9c7d)
+## Matplotlib-Styling-Plots
+Import the matplotlib.pyplot module under the name plt (the tidy way):
+```python
+# COMMON MISTAKE!
+# DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
+
+### The Data
+```python
+import numpy as np
+x = np.arange(0,10)
+y = 2 * x
+```
+### Legends
+You can use the label="label text" keyword argument when plots or other objects are added to the figure, and then using the legend method without arguments to add the legend to the figure:
+```python
+fig = plt.figure()
+​
+ax = fig.add_axes([0,0,1,1])
+​
+ax.plot(x, x**2, label="x**2")
+ax.plot(x, x**3, label="x**3")
+ax.legend()
+```
+<matplotlib.legend.Legend at 0x151b84e0c08>
+![23](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/8da4555d-5c5f-4eca-9da2-7fcf09a031d7)
+
+Notice how legend could potentially overlap some of the actual plot!
+
+The legend function takes an optional keyword argument loc that can be used to specify where in the figure the legend is to be drawn. The allowed values of loc are numerical codes for the various places the legend can be drawn. See the documentation page for details. Some of the most common loc values are:
+```python
+# Lots of options....
+​
+ax.legend(loc=1) # upper right corner
+ax.legend(loc=2) # upper left corner
+ax.legend(loc=3) # lower left corner
+ax.legend(loc=4) # lower right corner
+​
+# .. many more options are available
+​
+# Most common to choose
+ax.legend(loc=0) # let matplotlib decide the optimal location
+fig
+```
+![24](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/7f9d62bb-4217-42b7-872e-68a689b6f41b)
+```python
+ax.legend(loc=(1.1,0.5)) # manually set location
+fig
+```
+![25](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d0c8dad7-d883-4674-bfca-8380908d3c1a)
+
+### Setting colors, linewidths, linetypes
+Matplotlib gives you a lot of options for customizing colors, linewidths, and linetypes.
+
+There is the basic MATLAB like syntax (which I would suggest you avoid using unless you already feel really comfortable with MATLAB). Instead let's focus on the keyword parameters.
+
+#### Quick View:
+##### Colors with MatLab like syntax
+With matplotlib, we can define the colors of lines and other graphical elements in a number of ways. First of all, we can use the MATLAB-like syntax where 'b' means blue, 'g' means green, etc. The MATLAB API for selecting line styles are also supported: where, for example, 'b.-' means a blue line with dots:
+```python
+# MATLAB style line color and style 
+fig, ax = plt.subplots()
+ax.plot(x, x**2, 'b.-') # blue line with dots
+ax.plot(x, x**3, 'g--') # green dashed line
+```
+[<matplotlib.lines.Line2D at 0x151b8c263c8>]
+![26](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/2ce7d13a-46df-47f1-a3fc-d254b07039fc)
+
+### Suggested Approach: Use keyword arguments
+#### Colors with the color parameter
+We can also define colors by their names or RGB hex codes and optionally provide an alpha value using the color and alpha keyword arguments. Alpha indicates opacity.
+```python
+fig, ax = plt.subplots()
+​
+ax.plot(x, x+1, color="blue", alpha=0.5) # half-transparant
+ax.plot(x, x+2, color="#8B008B")        # RGB hex code
+ax.plot(x, x+3, color="#FF8C00")        # RGB hex code
+```
+[<matplotlib.lines.Line2D at 0x151b8c7fa08>]
+![27](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/5f0cfc9f-dd45-40e4-936f-4668579ea318)
+
+### Line and marker styles
+#### Linewidth
+To change the line width, we can use the linewidth or lw keyword argument.
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+# Use linewidth or lw
+ax.plot(x, x-1, color="red", linewidth=0.25)
+ax.plot(x, x-2, color="red", lw=0.50)
+ax.plot(x, x-3, color="red", lw=1)
+ax.plot(x, x-4, color="red", lw=10)
+```
+[<matplotlib.lines.Line2D at 0x151b6dda608>]
+![28](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/dd2145f0-e06f-422a-8b52-a6ed7f9987eb)
 
 
+#### Linestyles
+There are many linestyles to choose from, here is the selection:
+```python
+# possible linestype options ‘--‘, ‘–’, ‘-.’, ‘:’, ‘steps’
+fig, ax = plt.subplots(figsize=(12,6))
+​
+ax.plot(x, x-1, color="green", lw=3, linestyle='-') # solid
+ax.plot(x, x-2, color="green", lw=3, ls='-.') # dash and dot
+ax.plot(x, x-3, color="green", lw=3, ls=':') # dots
+ax.plot(x, x-4, color="green", lw=3, ls='--') # dashes
+```
+[<matplotlib.lines.Line2D at 0x151b6df5d48>]
+![29](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3eea3843-4970-49b1-ae56-7f3d7103a7bd)
+
+#### Custom linestyle dash
+The dash sequence is a sequence of floats of even length describing the length of dashes and spaces in points.
+
+For example, (5, 2, 1, 2) describes a sequence of 5 point and 1 point dashes separated by 2 point spaces.
+
+First, we see we can actually "grab" the line from the .plot() command
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+lines = ax.plot(x,x)
+​
+print(type(lines))
+```
+<class 'list'>
+![30](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d05ce2b5-8f77-43d2-891c-65c63c6e9de4)
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# custom dash
+lines = ax.plot(x, x+8, color="black", lw=5)
+lines[0].set_dashes([10, 10]) # format: line length, space length
+```
+![31](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/f90bc48a-3747-48c9-9bc9-15692d4c9609)
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# custom dash
+lines = ax.plot(x, x+8, color="black", lw=5)
+lines[0].set_dashes([1, 1,1,1,10,10]) # format: line length, space length
+```
+### Markers
+We've technically always been plotting points, and matplotlib has been automatically drawing a line between these points for us. Let's explore how to place markers at each of these points.
+
+#### Markers Style
+Huge list of marker types can be found here: https://matplotlib.org/3.2.2/api/markers_api.html
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+# Use marker for string code
+# Use markersize or ms for size
+​
+ax.plot(x, x-1,marker='+',markersize=20)
+ax.plot(x, x-2,marker='o',ms=20) #ms can be used for markersize
+ax.plot(x, x-3,marker='s',ms=20,lw=0) # make linewidth zero to see only markers
+ax.plot(x, x-4,marker='1',ms=20)
+```
+[<matplotlib.lines.Line2D at 0x151b89eed08>]
+![32](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/549cafcc-3244-4dcd-9dfc-83538e422d7a)
+
+#### Custom marker edges, thickness,size,and style
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# marker size and color
+ax.plot(x, x, color="black", lw=1, ls='-', marker='s', markersize=20, 
+        markerfacecolor="red", markeredgewidth=8, markeredgecolor="blue");
+```
+![33](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/f3746da0-0221-408b-8e4d-036bcaea9b65)
 
