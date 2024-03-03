@@ -223,7 +223,7 @@ array([38, 18, 22, 10, 10, 23, 35, 39, 23,  2])
 
 #### Reshape
 Returns an array containing the same data with a new shape. [reference]
-``` python
+```python
 arr.reshape(5,5)
 ```
 Output 
@@ -241,7 +241,7 @@ array([38, 18, 22, 10, 10, 23, 35, 39, 23,  2])
 ranarr.max()
 ```
 39
-``` python
+```python
 ranarr.argmax()
 ```
 7
@@ -868,106 +868,115 @@ array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 y
 ```
 array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
-Creating a Figure
+## Creating a Figure
 The main idea in using the more formal Object Oriented method is to create figure objects and then just call methods or attributes off of that object. This approach is nicer when dealing with a canvas that has multiple plots on it.
 
-# 3 Creates blank canvas
+#Creates blank canvas
 fig = plt.figure()
 <Figure size 432x288 with 0 Axes>
 ### NOTE: ALL THE COMMANDS NEED TO GO IN THE SAME CELL!
 
 To begin we create a figure instance. Then we can add axes to that figure:
-
-# Create Figure (empty canvas)
+```python
+#Create Figure (empty canvas)
 
 fig = plt.figure()
 ​
-# Add set of axes to figure
+#Add set of axes to figure
 axes = fig.add_axes([0, 0, 1, 1]) # left, bottom, width, height (range 0 to 1)
 ​
-# Plot on that set of axes
+#Plot on that set of axes
 axes.plot(x, y)
 ​
 plt.show()
-
-# Create Figure (empty canvas)
+```
+![4](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/68556cd5-1e1a-4f81-9ad0-b7bbf4dc4aa4)
+```python
+#Create Figure (empty canvas)
 fig = plt.figure()
 ​
-# Add set of axes to figure
+#Add set of axes to figure
 axes = fig.add_axes([0, 0, 1, 1]) # left, bottom, width, height (range 0 to 1)
 ​
-# Plot on that set of axes
+#Plot on that set of axes
 axes.plot(a, b)
 ​
 plt.show()
+```
+![5](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/666961e7-a699-49a0-95be-9c89a09741b1)
 
-Adding another set of axes to the Figure
+### Adding another set of axes to the Figure
 So far we've only seen one set of axes on this figure object, but we can keep adding new axes on to it at any location and size we want. We can then plot on that new set of axes.
-
+```python
 type(fig)
+```
 matplotlib.figure.Figure
 Code is a little more complicated, but the advantage is that we now have full control of where the plot axes are placed, and we can easily add more than one axis to the figure. Note how we're plotting a,b twice here
-
-# Creates blank canvas
+```python
+#Creates blank canvas
 fig = plt.figure()
 ​
 axes1 = fig.add_axes([0, 0, 1, 1]) # Large figure
 axes2 = fig.add_axes([0.2, 0.2, 0.5, 0.5]) # Smaller figure
 ​
-# Larger Figure Axes 1
+#Larger Figure Axes 1
 axes1.plot(a, b)
 ​
-# Use set_ to add to the axes figure
+#Use set_ to add to the axes figure
 axes1.set_xlabel('X Label')
 axes1.set_ylabel('Y Label')
 axes1.set_title('Big Figure')
 ​
-# Insert Figure Axes 2
+#Insert Figure Axes 2
 axes2.plot(a,b)
 axes2.set_title('Small Figure');
+```
+![6](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3aa5e0f1-bca3-43ed-a0d0-9c7a32be71bd)
 
 Let's move the small figure and edit its parameters.
-
-# Creates blank canvas
+```python
+#Creates blank canvas
 fig = plt.figure()
 ​
 axes1 = fig.add_axes([0, 0, 1, 1]) # Large figure
 axes2 = fig.add_axes([0.2, 0.5, 0.25, 0.25]) # Smaller figure
 ​
-# Larger Figure Axes 1
+#Larger Figure Axes 1
 axes1.plot(a, b)
 ​
-# Use set_ to add to the axes figure
+#Use set_ to add to the axes figure
 axes1.set_xlabel('X Label')
 axes1.set_ylabel('Y Label')
 axes1.set_title('Big Figure')
 ​
-# Insert Figure Axes 2
+#Insert Figure Axes 2
 axes2.plot(a,b)
 axes2.set_xlim(8,10)
 axes2.set_ylim(4000,10000)
 axes2.set_xlabel('X')
 axes2.set_ylabel('Y')
 axes2.set_title('Zoomed In');
+```
+![7](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d665b98c-0d6c-4653-8248-4789cb69ee74)
 
 You can add as many axes on to the same figure as you want, even outside of the main figure if the length and width correspond to this.
-
-# Creates blank canvas
+```python
+#Creates blank canvas
 fig = plt.figure()
 ​
 axes1 = fig.add_axes([0, 0, 1, 1]) # Full figure
 axes2 = fig.add_axes([0.2, 0.5, 0.25, 0.25]) # Smaller figure
 axes3 = fig.add_axes([1, 1, 0.25, 0.25]) # Starts at top right corner!
 ​
-# Larger Figure Axes 1
+#Larger Figure Axes 1
 axes1.plot(a, b)
 ​
-# Use set_ to add to the axes figure
+#Use set_ to add to the axes figure
 axes1.set_xlabel('X Label')
 axes1.set_ylabel('Y Label')
 axes1.set_title('Big Figure')
 ​
-# Insert Figure Axes 2
+#Insert Figure Axes 2
 axes2.plot(a,b)
 axes2.set_xlim(8,10)
 axes2.set_ylim(4000,10000)
@@ -975,21 +984,26 @@ axes2.set_xlabel('X')
 axes2.set_ylabel('Y')
 axes2.set_title('Zoomed In');
 ​
-# Insert Figure Axes 3
+#Insert Figure Axes 3
 axes3.plot(a,b)
-​
+​```
 [<matplotlib.lines.Line2D at 0x1cd42ad2888>]
+![8](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/90f0bedb-940e-4ec4-b323-0b0fd73246fb)
 
-Figure Parameters
-# Creates blank canvas
+### Figure Parameters
+```python
+#Creates blank canvas
 fig = plt.figure(figsize=(12,8),dpi=100)
 ​
 axes1 = fig.add_axes([0, 0, 1, 1])
 ​
 axes1.plot(a,b)
+```
 [<matplotlib.lines.Line2D at 0x1cd42d53848>]
+![9](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d342bfbb-9ab2-4d9a-ae33-cf1bfd8dba18)
 
-Exporting a Figure
+### Exporting a Figure
+```python
 fig = plt.figure()
 ​
 axes1 = fig.add_axes([0, 0, 1, 1])
@@ -999,7 +1013,9 @@ axes1.set_xlabel('X')
 ​
 # bbox_inches ='tight' automatically makes sure the bounding box is correct
 fig.savefig('figure.png',bbox_inches='tight')
-
+```
+![10](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/787a105f-b632-4c59-b817-9cbcfc270f55)
+```python
 # Creates blank canvas
 fig = plt.figure(figsize=(12,8))
 ​
@@ -1013,6 +1029,214 @@ axes1.plot(x,y)
 axes2.plot(x,y)
 ​
 fig.savefig('test.png',bbox_inches='tight')
+```
+![11](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/784c883b-77f5-490c-86e4-e46ed77001fb)
+## Matplotlib subplots
+import the matplotlib.pyplot module under the name plt (the tidy way):
+![12](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/2694643f-7fdb-447d-a07b-67daac5cafd9)
+```python
+# COMMON MISTAKE!
+# DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
 
-## 
+### The Data
+``` python
+import numpy as np
+a = np.linspace(0,10,11)
+b = a ** 4
+a
+```
+array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])
+```python
+b
+```
+array([0.000e+00, 1.000e+00, 1.600e+01, 8.100e+01, 2.560e+02, 6.250e+02,
+       1.296e+03, 2.401e+03, 4.096e+03, 6.561e+03, 1.000e+04]) 
+```python
+x = np.arange(0,10)
+y = 2 * x
+x
+```
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```python
+y
+```
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
+## plt.subplots()
+NOTE: Make sure you put the commands all together in the same cell as we do in this notebook and video!
+
+The plt.subplots() object will act as a more automatic axis manager. This makes it much easier to show multiple plots side by side.
+
+Note how we use tuple unpacking to grba both the Figure object and a numpy array of axes:
+```python
+#Use similar to plt.figure() except use tuple unpacking to grab fig and axes
+fig, axes = plt.subplots()
+​
+#Now use the axes object to add stuff to plot
+axes.plot(x, y, 'r')
+axes.set_xlabel('x')
+axes.set_ylabel('y')
+axes.set_title('title'); #; hides Out[]
+```
+![13](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/24759ebe-fcae-4c1a-be4f-d26e3bcd9576)
+
+### Adding rows and columns
+Then you can specify the number of rows and columns when creating the subplots() object:
+```python
+#Empty canvas of 1 by 2 subplots
+fig, axes = plt.subplots(nrows=1, ncols=2)
+```
+![14](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3e5cad56-9704-42cb-a04f-844b504f9d74)
+```python
+#Axes is an array of axes to plot on
+axes
+```
+array([<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521E20588>,
+       <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521E5D8C8>],
+      dtype=object)
+```python
+axes.shape
+```
+(2,)
+```python
+#Empty canvas of 2 by 2 subplots
+fig, axes = plt.subplots(nrows=2, ncols=2)
+```
+![15](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/153abcc0-6d10-412a-b93d-e926ea08394c)
+```python
+axes
+```
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521ED5E48>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F09D88>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F45308>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F79D88>]],
+      dtype=object)
+```python
+axes.shape
+```
+(2, 2)
+### Plotting on axes objects
+Just as before, we simple .plot() on the axes objects, and we can also use the .set_ methods on each axes.
+
+Let's explore this, make sure this is all in the same cell:
+``` python
+fig,axes = plt.subplots(nrows=1,ncols=2)
+​
+for axe in axes:
+    axe.plot(x,y)
+```
+![16](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/915f0ca2-b6de-48f3-93c3-204545484152)
+``` python
+fig,axes = plt.subplots(nrows=1,ncols=2)
+axes[0].plot(a,b)
+axes[1].plot(x,y)
+```
+[<matplotlib.lines.Line2D at 0x2352216ce88>]
+![17](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1262fcb0-0a93-4339-ada3-91019996d354)
+``` python
+###NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2)
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+```
+[<matplotlib.lines.Line2D at 0x2352229c648>]
+
+![18](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/b5093c20-e317-453d-beb9-926701461f40)
+
+A common issue with matplolib is overlapping subplots or figures. We ca use fig.tight_layout() or plt.tight_layout() method, which automatically adjusts the positions of the axes on the figure canvas so that there is no overlapping content:
+``` python
+#NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2)
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)  
+​
+plt.tight_layout()
+```
+![19](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/aad3ff80-c795-4bc9-9da8-e12a690296a8)
+
+### Parameters on subplots()
+Recall we have both the Figure object and the axes. Meaning we can edit properties at both levels.
+``` python
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+# SET YOUR AXES PARAMETERS FIRST
+​
+# Parameters at the axes level
+axes[0][0].plot(a,b)
+axes[0][0].set_title('0 0 Title')
+​
+​
+axes[1][1].plot(x,y)
+axes[1][1].set_title('1 1 Title')
+axes[1][1].set_xlabel('1 1 X Label')
+​
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+# THEN SET OVERALL FIGURE PARAMETERS
+​
+# Parameters at the Figure level
+fig.suptitle("Figure Level",fontsize=16)
+​
+​
+plt.show()
+```
+![20](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/917a9dff-c903-4010-8af4-f7fa1ea73cce)
+
+### Manual spacing on subplots()
+Use .subplots_adjust to adjust spacing manually.
+Example 
+
+left = 0.125 # the left side of the subplots of the figure
+right = 0.9 # the right side of the subplots of the figure
+bottom = 0.1 # the bottom of the subplots of the figure
+top = 0.9 # the top of the subplots of the figure
+wspace = 0.2 # the amount of width reserved for space between subplots,
+        # expressed as a fraction of the average axis width
+hspace = 0.2 # the amount of height reserved for space between subplots,
+        # expressed as a fraction of the average axis height
+``` python
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+# Parameters at the axes level
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+# Use left,right,top, bottom to stretch subplots
+# Use wspace,hspace to add spacing between subplots
+fig.subplots_adjust(left=None,
+    bottom=None,
+    right=None,
+    top=None,
+    wspace=0.9,
+    hspace=0.1,)
+​
+plt.show()
+```
+![21](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1d2f4e74-732a-4f01-a53d-cf83bebc8264)
+
+## Exporting plt.subplots()
+``` python
+# NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+fig.savefig('subplots.png',bbox_inches='tight')
+​
+plt.show()
+```
+![22](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1f0786fe-3794-4a32-833b-bf7624fe9c7d)
+
+
 
